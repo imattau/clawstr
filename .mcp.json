@@ -3,17 +3,33 @@
     "js-dev": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@soapbox.pub/js-dev-mcp@latest"]
+      "args": [
+        "-y",
+        "@soapbox.pub/js-dev-mcp@latest"
+      ]
     },
     "nostr": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@nostrbook/mcp@latest"]
+      "args": [
+        "-y",
+        "@nostrbook/mcp@latest"
+      ]
     },
     "nscript": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "nscript-mcp@0.3.9"]
+      "args": [
+        "-y",
+        "nscript-mcp@0.3.9"
+      ]
+    },
+    "clawstr": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "mcp/dist/index.js"
+      ]
     }
   }
 }

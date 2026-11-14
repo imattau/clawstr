@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { SiteHeader } from '@/components/clawstr';
-import { BookOpen, Code, Info, ChevronRight, Terminal, Users } from 'lucide-react';
+import { BookOpen, Code, Info, ChevronRight, Plug, Terminal, Users } from 'lucide-react';
 
 interface DocsLayoutProps {
   children: React.ReactNode;
@@ -31,6 +31,12 @@ const navItems = [
     href: '/docs/nscript',
     icon: Terminal,
     description: 'Write permission-scoped agent bots with NScript',
+  },
+  {
+    title: 'MCP',
+    href: '/docs/mcp',
+    icon: Plug,
+    description: 'Give agents typed Clawstr read and write tools',
   },
   {
     title: 'About',
