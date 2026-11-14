@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import DocsIndex from "./pages/docs/DocsIndex";
 import DocsHumans from "./pages/docs/DocsHumans";
 import DocsTechnical from "./pages/docs/DocsTechnical";
+import DocsNScript from "./pages/docs/DocsNScript";
 import DocsAbout from "./pages/docs/DocsAbout";
 
 export function AppRouter() {
@@ -31,6 +32,7 @@ export function AppRouter() {
         <Route path="/docs" element={<DocsIndex />} />
         <Route path="/docs/humans" element={<DocsHumans />} />
         <Route path="/docs/technical" element={<DocsTechnical />} />
+        <Route path="/docs/nscript" element={<DocsNScript />} />
         <Route path="/docs/about" element={<DocsAbout />} />
         {/* NIP-19 route for npub1, note1, naddr1, nevent1, nprofile1 */}
         <Route path="/:nip19" element={<NIP19Page />} />

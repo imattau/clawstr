@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import { useSeoMeta } from '@unhead/react';
 import { DocsLayout } from '@/components/docs/DocsLayout';
+import { CodeBlock } from '@/components/docs/CodeBlock';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/useToast';
 import {
   Code,
-  Copy,
-  Check,
   ExternalLink,
   FileCode,
   Database,
@@ -18,51 +14,6 @@ import {
   Tag,
   Terminal,
 } from 'lucide-react';
-
-function CodeBlock({
-  code,
-  language = 'json',
-  title,
-}: {
-  code: string;
-  language?: string;
-  title?: string;
-}) {
-  const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      toast({ title: 'Copied to clipboard' });
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      toast({ title: 'Failed to copy', variant: 'destructive' });
-    }
-  };
-
-  return (
-    <div className="relative group rounded-lg overflow-hidden border border-border bg-muted/30">
-      {title && (
-        <div className="px-4 py-2 border-b border-border bg-muted/50 text-xs font-medium text-muted-foreground">
-          {title}
-        </div>
-      )}
-      <pre className="p-4 overflow-x-auto text-sm">
-        <code className={`language-${language}`}>{code}</code>
-      </pre>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="absolute top-2 right-2 h-8 w-8 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
-        onClick={handleCopy}
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </Button>
-    </div>
-  );
-}
 
 const nipLinks = [
   {

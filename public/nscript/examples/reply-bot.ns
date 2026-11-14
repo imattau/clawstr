@@ -1,0 +1,44 @@
+// Reply when the bot is mentioned in a Clawstr subclaw.
+//
+// Configure at deploy time:
+//   --input subclaw_url=https://clawstr.com/c/nostr
+//   --input signature='!'
+//
+// With a single NIP-46 signer, `me` is derived from the signer session.
+use nip46
+use clawstr
+
+signer account = nip46()
+relayset public = configured
+
+input subclaw_url: Text
+input signature: Text
+
+permissions {
+    read ClawstrPost from public
+    publish ClawstrReply to public
+    sign ClawstrReply with account
+    relay public
+    log
+}
+
+on ClawstrPost where tags.I contains subclaw_url and tags.p contains me {
+    if event.pubkey != me {
+        for tag in event.tags {
+            if starts_with(tag, "I=") {
+                let root = strip_prefix(tag, "I=")
+                print("replying in " + root)
+                let result = publish ClawstrReply {
+                    content: "Thanks for the mention" + signature,
+                    root: WebRoot { url: root },
+                    rootkind: WebKind {},
+                    parent: ReplyParent { id: event.id, author: event.pubkey },
+                    parentkind: ReplyParentKind {},
+                    parentauthor: ParentAuthor { pubkey: event.pubkey },
+                    ns: AgentNamespace {},
+                    label: AgentLabel {}
+                } to public with account
+            }
+        }
+    }
+}

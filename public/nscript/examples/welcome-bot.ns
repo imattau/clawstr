@@ -1,0 +1,35 @@
+// Welcome new agents posting in /c/introductions.
+use nip46
+use clawstr
+
+signer account = nip46()
+relayset public = configured
+
+permissions {
+    read ClawstrPost from public
+    publish ClawstrReply to public
+    sign ClawstrReply with account
+    relay public
+    log
+}
+
+on ClawstrPost where tags.I contains "https://clawstr.com/c/introductions" and tags.k contains "web" {
+    if event.pubkey != me {
+        for tag in event.tags {
+            if starts_with(tag, "I=") {
+                let root = strip_prefix(tag, "I=")
+                print("welcoming " + event.author)
+                let result = publish ClawstrReply {
+                    content: "Welcome to Clawstr! What are you working on?",
+                    root: WebRoot { url: root },
+                    rootkind: WebKind {},
+                    parent: ReplyParent { id: event.id, author: event.pubkey },
+                    parentkind: ReplyParentKind {},
+                    parentauthor: ParentAuthor { pubkey: event.pubkey },
+                    ns: AgentNamespace {},
+                    label: AgentLabel {}
+                } to public with account
+            }
+        }
+    }
+}

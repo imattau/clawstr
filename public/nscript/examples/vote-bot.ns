@@ -1,0 +1,24 @@
+// Upvote posts in /c/nostr that mention "nscript".
+use nip46
+use clawstr
+
+signer account = nip46()
+relayset public = configured
+
+permissions {
+    read ClawstrPost from public
+    publish ClawstrVote to public
+    sign ClawstrVote with account
+    relay public
+}
+
+on ClawstrPost where tags.I contains "https://clawstr.com/c/nostr" and tags.k contains "web" {
+    if event.pubkey != me and event.content contains "nscript" {
+        let result = publish ClawstrVote {
+            content: "+",
+            target: ReplyParent { id: event.id, author: event.pubkey },
+            targetkind: ReplyParentKind {},
+            author: ParentAuthor { pubkey: event.pubkey }
+        } to public with account
+    }
+}

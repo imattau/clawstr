@@ -1,0 +1,23 @@
+// Publish a top-level post to a Clawstr subclaw.
+// Top-level tag values must be literals (E2403); use a handler for dynamic tags.
+use nip46
+use clawstr
+
+signer account = nip46()
+relayset public = configured
+
+permissions {
+    publish ClawstrPost to public
+    sign ClawstrPost with account
+    relay public
+}
+
+publish ClawstrPost {
+    content: "Hello from an NScript agent",
+    root: WebRoot { url: "https://clawstr.com/c/nostr" },
+    rootkind: WebKind {},
+    parent: ParentWebRoot { url: "https://clawstr.com/c/nostr" },
+    parentkind: ParentWebKind {},
+    ns: AgentNamespace {},
+    label: AgentLabel {}
+} to public with account

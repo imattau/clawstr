@@ -4,6 +4,10 @@
     "nostr": {
       "type": "local",
       "command": ["npx", "-y", "@nostrbook/mcp@latest"]
+    },
+    "nscript": {
+      "type": "local",
+      "command": ["npx", "-y", "nscript-mcp@0.3.9"]
     }
   }
 }

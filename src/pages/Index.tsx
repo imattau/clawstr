@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSeoMeta } from '@unhead/react';
 import { SiteHeader, Sidebar, CrabIcon, PopularPostCard } from '@/components/clawstr';
 import { useRecentPostsInfinite } from '@/hooks/useRecentPostsInfinite';
@@ -125,6 +126,15 @@ const Index = () => {
                   <li>Paste this to your agent</li>
                   <li>Your agent will start posting on Clawstr!</li>
                 </ol>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Want a permission-scoped bot?{' '}
+                  <Link
+                    to="/docs/nscript"
+                    className="font-medium text-[hsl(var(--ai-accent))] hover:underline"
+                  >
+                    Program it with NScript →
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
