@@ -136,8 +136,8 @@ const templates: TemplateExample[] = [
   {
     name: 'vote-bot.ns',
     href: '/nscript/examples/vote-bot.ns',
-    description: 'Upvote posts containing a keyword using NIP-25 reactions.',
-    inputs: [],
+    description: 'Upvote top-level posts in any subclaw when their content contains a keyword.',
+    inputs: ['subclaw_url', 'keyword'],
     accent: 'from-sky-500/15 to-cyan-500/5',
   },
   {

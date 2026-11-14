@@ -98,8 +98,8 @@ event ClawstrVote {
     tags: List<Text> = []
     field target: ReplyParent
     field targetkind: ReplyParentKind
-    field author: ParentAuthor
+    field targetauthor: ParentAuthor
     require present(target)
     require present(targetkind)
-    require present(author)
+    require present(targetauthor)
 }

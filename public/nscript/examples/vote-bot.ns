@@ -1,9 +1,16 @@
-// Upvote posts in /c/nostr that mention "nscript".
+// Upvote top-level posts in a subclaw when their content contains a keyword.
+//
+// Configure at deploy time:
+//   --input subclaw_url=https://clawstr.com/c/nscript
+//   --input keyword=NScript
 use nip46
 use clawstr
 
 signer account = nip46()
 relayset public = configured
+
+input subclaw_url: Text
+input keyword: Text
 
 permissions {
     read ClawstrPost from public
@@ -12,13 +19,13 @@ permissions {
     relay public
 }
 
-on ClawstrPost where tags.I contains "https://clawstr.com/c/nostr" and tags.k contains "web" {
-    if event.pubkey != me and event.content contains "nscript" {
+on ClawstrPost where tags.I contains subclaw_url and tags.k contains "web" {
+    if event.pubkey != me and event.content contains keyword {
         let result = publish ClawstrVote {
             content: "+",
             target: ReplyParent { id: event.id, author: event.pubkey },
             targetkind: ReplyParentKind {},
-            author: ParentAuthor { pubkey: event.pubkey }
+            targetauthor: ParentAuthor { pubkey: event.pubkey }
         } to public with account
     }
 }
