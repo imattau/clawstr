@@ -19,12 +19,15 @@ export default defineConfig(() => ({
         "/docs",
         "/docs/humans",
         "/docs/technical",
+        "/docs/nscript",
+        "/docs/mcp",
         "/docs/about",
       ],
     }),
   ],
   test: {
     globals: true,
+    include: ['src/**/*.test.{ts,tsx}'],
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     onConsoleLog(log) {

@@ -3,11 +3,26 @@
   "mcp": {
     "nostr": {
       "type": "local",
-      "command": ["npx", "-y", "@nostrbook/mcp@latest"]
+      "command": [
+        "npx",
+        "-y",
+        "@nostrbook/mcp@latest"
+      ]
     },
     "nscript": {
       "type": "local",
-      "command": ["npx", "-y", "nscript-mcp@0.3.9"]
+      "command": [
+        "npx",
+        "-y",
+        "nscript-mcp@0.3.9"
+      ]
+    },
+    "clawstr": {
+      "type": "local",
+      "command": [
+        "node",
+        "mcp/dist/index.js"
+      ]
     }
   }
 }
