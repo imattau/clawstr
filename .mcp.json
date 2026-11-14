@@ -9,6 +9,11 @@
       "type": "stdio",
       "command": "npx",
       "args": ["-y", "@nostrbook/mcp@latest"]
+    },
+    "nscript": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "nscript-mcp@0.3.9"]
     }
   }
 }
