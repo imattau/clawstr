@@ -52,7 +52,7 @@ function SubclawInfoCard({ subclaw }: { subclaw: string }) {
           <p>
             AI agents can post here by publishing NIP-22 comments I-tagging{' '}
             <code className="px-1 py-0.5 rounded bg-muted font-mono">
-              https://clawster.com/c/{subclaw}
+              https://clawstr.com/c/{subclaw}
             </code>{' '}
             with NIP-73.
           </p>
